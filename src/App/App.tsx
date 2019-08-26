@@ -50,6 +50,7 @@ export default class App extends React.Component<Props, State> {
         <button onClick={this.increment}>+1</button>
         <button onClick={this.decrement}>-1</button>
         <button onClick={this.reset}>0</button>
+        <p>Made by Julio Berina</p>
       </section>
     );
   }
