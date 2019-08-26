@@ -1,26 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+type Props = {};
+type State = {
+  count: number,
+  message: string
+};
 
-export default App;
+export default class App extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+      message: 'No clicks yet'
+    };
+
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+    this.reset = this.reset.bind(this);
+  }
+
+  increment() {
+    this.setState({ 
+      count: this.state.count + 1,
+      message: this.state.count + 1 + ' clicks'
+    });
+  }
+
+  decrement() {
+    this.setState({
+      count: this.state.count - 1,
+      message: this.state.count - 1 + ' clicks'
+    });
+  }
+
+  reset() {
+    this.setState({
+      count: 0,
+      message: 'No clicks yet'
+    });
+  }
+
+  render() {
+    return (
+      <section>
+        <h1>Counter</h1>
+        <p>{this.state.message}</p>
+        <button onClick={this.increment}>+1</button>
+        <button onClick={this.decrement.bind(this)}>-1</button>
+        <button onClick={this.reset.bind(this)}>0</button>
+      </section>
+    );
+  }
+}
